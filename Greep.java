@@ -33,6 +33,31 @@ public class Greep extends Creature
     public void act()
     {
         super.act();   // do not delete! leave as first statement in act().
+        if (atWater() )
+        {
+            turn(50);
+        }
+        
+        if(getX() == 0)
+        {
+            turn(30);
+        }
+        
+        if(getX() == 800)
+        {
+            turn(-90);
+        }
+        
+        if (getY() == 0)
+        {
+            turn(40);
+        }
+        
+        if (getY() == 600)
+        {
+            turn(-70);
+        }
+        
         if (carryingTomato()) {
             if (atShip()) {
                 dropTomato();
@@ -46,6 +71,8 @@ public class Greep extends Creature
             move();
             checkFood();
         }
+        
+        
     }
     
     /**
@@ -83,4 +110,6 @@ public class Greep extends Creature
             return "greep.png";
         }
     }
+    
+     
 }

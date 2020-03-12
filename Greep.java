@@ -10,7 +10,7 @@ public class Greep extends Creature
 {
     // Remember: you cannot extend the Greep's memory. So:
     // no additional fields (other than final fields) allowed in this class!
-    
+   private boolean setFlag = true;
    /**
      * Default constructor for testing purposes.
      */
@@ -33,18 +33,11 @@ public class Greep extends Creature
     public void act()
     {
         super.act();   // do not delete! leave as first statement in act().
-        if (atWater() )
-        {
-           turn(Greenfoot.getRandomNumber(180));
-           
-        }
-        
-        if (isAtEdge()) 
+        if (atWater() || isAtEdge() )
         {
            turn(Greenfoot.getRandomNumber(180));
         }
         
-      
         if (carryingTomato()) {
             if (atShip()) {
                 dropTomato();
@@ -55,13 +48,12 @@ public class Greep extends Creature
                  for (int x = 1; x < 100; x++)
                  {
                      if (x == 1) {
-                     turn(35);
+                     turn(53);
                     }
                     move();
                   }
-  
                 }
-                turnHome();
+               turnHome();
                 move();
             }
         }
@@ -69,6 +61,12 @@ public class Greep extends Creature
             move();
             checkFood();
         }
+        
+        if (carryingTomato() ) 
+        {
+          spit("red");
+        }
+        
         
         
     }
@@ -86,10 +84,7 @@ public class Greep extends Creature
             // do anything if we are alone here.
         }
         
-        if (tomatoes != null) 
-        {
-            
-        }
+        
     }
 
    /**

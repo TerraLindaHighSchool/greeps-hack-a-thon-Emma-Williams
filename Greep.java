@@ -11,7 +11,7 @@ public class Greep extends Creature
     // Remember: you cannot extend the Greep's memory. So:
     // no additional fields (other than final fields) allowed in this class!
     
-    /**
+   /**
      * Default constructor for testing purposes.
      */
     public Greep()
@@ -19,7 +19,7 @@ public class Greep extends Creature
         this(null);
     }
     
-    /**
+   /**
      * Create a Greep with its home space ship.
      */
     public Greep(Ship ship)
@@ -27,7 +27,7 @@ public class Greep extends Creature
         super(ship);
     }
 
-    /**
+   /**
      * Do what a greep's gotta do.
      */
     public void act()
@@ -35,34 +35,32 @@ public class Greep extends Creature
         super.act();   // do not delete! leave as first statement in act().
         if (atWater() )
         {
-            turn(50);
+           turn(Greenfoot.getRandomNumber(180));
+           
         }
         
-        if(getX() == 0)
+        if (isAtEdge()) 
         {
-            turn(30);
+           turn(Greenfoot.getRandomNumber(180));
         }
         
-        if(getX() == 800)
-        {
-            turn(-90);
-        }
-        
-        if (getY() == 0)
-        {
-            turn(40);
-        }
-        
-        if (getY() == 600)
-        {
-            turn(-70);
-        }
-        
+      
         if (carryingTomato()) {
             if (atShip()) {
                 dropTomato();
             }
             else {
+               if (atWater() )
+               {
+                 for (int x = 1; x < 100; x++)
+                 {
+                     if (x == 1) {
+                     turn(35);
+                    }
+                    move();
+                  }
+  
+                }
                 turnHome();
                 move();
             }
@@ -75,7 +73,7 @@ public class Greep extends Creature
         
     }
     
-    /**
+   /**
      * Is there any food here where we are? If so, try to load some!
      */
     public void checkFood()
@@ -87,9 +85,14 @@ public class Greep extends Creature
             // Note: this attempts to load a tomato onto *another* Greep. It won't
             // do anything if we are alone here.
         }
+        
+        if (tomatoes != null) 
+        {
+            
+        }
     }
 
-    /**
+   /**
      * This method specifies the name of the author (for display on the result board).
      */
     public static String getAuthorName()
@@ -97,7 +100,7 @@ public class Greep extends Creature
         return "Anonymous";  // write your name here!
     }
 
-    /**
+   /**
      * This method specifies the image we want displayed at any time. (No need 
      * to change this for the competition.)
      */
@@ -109,7 +112,5 @@ public class Greep extends Creature
         else {
             return "greep.png";
         }
-    }
-    
-     
+    }  
 }
